@@ -1,0 +1,11 @@
+something > testfile.txt
+1. Name
+2. Age
+3. Age
+
+s
+ls
+git space status
+ls
+cd Assignments/
+echo something
