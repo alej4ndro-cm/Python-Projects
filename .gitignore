@@ -1,0 +1,32 @@
+# Ignore all log files
+*.log
+
+# Ignore node_modules folder (if applicable)
+node_modules/
+
+# Ignore environment files and folders
+.env
+/Interactive_Volcano_Web_Map/.envIVWM
+/Music-Insights/.venv/
+/Reddit-Poster/.env_reddit
+
+# Ignore compiled files (e.g., Python bytecode)
+*.pyc
+__pycache__/
+
+# Ignore VS Code workspace settings
+.vscode/
+
+# Ignore all MacOS hidden system files
+.DS_Store
+
+# Ignore all temp files
+*.tmp
+
+# Ignore text file for deployment costs
+Deployment cost guidance.txt
+
+#folders
+/_misc_scripts
+/Commvault
+/Djangoshop
