@@ -1,0 +1,1925 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_51cb0479f64195ac5872431eb2df1f42 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+<div style="
+    position: fixed; 
+    bottom: 50px; left: 50px; width: 150px; height: 120px; 
+    background-color: white; border:2px solid grey; z-index:9999; font-size:14px;
+    ">
+    &nbsp; <b>Elevation Legend</b> <br>
+    &nbsp; <i class="fa fa-circle" style="color:blue"></i>&nbsp; < 1000 m<br>
+    &nbsp; <i class="fa fa-circle" style="color:purple"></i>&nbsp; 1000 - 3000 m<br>
+    &nbsp; <i class="fa fa-circle" style="color:darkred"></i>&nbsp; > 3000 m
+</div>
+    
+            <div class="folium-map" id="map_51cb0479f64195ac5872431eb2df1f42" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_51cb0479f64195ac5872431eb2df1f42 = L.map(
+                "map_51cb0479f64195ac5872431eb2df1f42",
+                {
+                    center: [39.5, -119.5],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 6,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_46ece611490c509ef7afb5fd043a1bd6 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Map data \u00a9 OpenStreetMap contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_46ece611490c509ef7afb5fd043a1bd6.addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+            var tile_layer_b3ff71d1b6777b8e7b60fca9eb7982cb = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_b3ff71d1b6777b8e7b60fca9eb7982cb.addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+            var tile_layer_8400be9988cc660bc746b4c4ba8e0a22 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {"attribution": "Map tiles by CartoDB", "detectRetina": false, "maxNativeZoom": 20, "maxZoom": 20, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abcd", "tms": false}
+            );
+        
+    
+            tile_layer_8400be9988cc660bc746b4c4ba8e0a22.addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+            var tile_layer_e0f8256f5d45cdb58544aa0aa0df6f76 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+                {"attribution": "Map tiles by CartoDB", "detectRetina": false, "maxNativeZoom": 20, "maxZoom": 20, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abcd", "tms": false}
+            );
+        
+    
+            tile_layer_e0f8256f5d45cdb58544aa0aa0df6f76.addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+            var circle_marker_46e62c1aac4b0aed6f3b86544724efe3 = L.circleMarker(
+                [48.7767982, -121.810997],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkred", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_56bf5926738f1d39be3b1b4732416296 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_fb8a1d34fa1a6fb0b4fa2233ba25e955 = $(`<div id="html_fb8a1d34fa1a6fb0b4fa2233ba25e955" style="width: 100.0%; height: 100.0%;"><b>Baker</b><br>Location: US-Washington<br>Elevation: 3285.0 m</div>`)[0];
+                popup_56bf5926738f1d39be3b1b4732416296.setContent(html_fb8a1d34fa1a6fb0b4fa2233ba25e955);
+            
+        
+
+        circle_marker_46e62c1aac4b0aed6f3b86544724efe3.bindPopup(popup_56bf5926738f1d39be3b1b4732416296)
+        ;
+
+        
+    
+    
+            circle_marker_46e62c1aac4b0aed6f3b86544724efe3.bindTooltip(
+                `<div>
+                     Baker - 3285.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_4786a6aba06255bb9c498a35a2ccdf6f = L.circleMarker(
+                [48.1118011, -121.1110001],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkred", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_8f4b76b58b9dc3535f70eab327d451f1 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_326e7ca901433e556b6a854309432b82 = $(`<div id="html_326e7ca901433e556b6a854309432b82" style="width: 100.0%; height: 100.0%;"><b>Glacier Peak</b><br>Location: US-Washington<br>Elevation: 3213.0 m</div>`)[0];
+                popup_8f4b76b58b9dc3535f70eab327d451f1.setContent(html_326e7ca901433e556b6a854309432b82);
+            
+        
+
+        circle_marker_4786a6aba06255bb9c498a35a2ccdf6f.bindPopup(popup_8f4b76b58b9dc3535f70eab327d451f1)
+        ;
+
+        
+    
+    
+            circle_marker_4786a6aba06255bb9c498a35a2ccdf6f.bindTooltip(
+                `<div>
+                     Glacier Peak - 3213.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_94a6aca1f5cacf88c867892039e56954 = L.circleMarker(
+                [46.8698006, -121.7509995],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkred", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_a88d7a29bf833449771d69dae919824f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_02ae7e5d516b35411c45fe661e05250d = $(`<div id="html_02ae7e5d516b35411c45fe661e05250d" style="width: 100.0%; height: 100.0%;"><b>Rainier</b><br>Location: US-Washington<br>Elevation: 4392.0 m</div>`)[0];
+                popup_a88d7a29bf833449771d69dae919824f.setContent(html_02ae7e5d516b35411c45fe661e05250d);
+            
+        
+
+        circle_marker_94a6aca1f5cacf88c867892039e56954.bindPopup(popup_a88d7a29bf833449771d69dae919824f)
+        ;
+
+        
+    
+    
+            circle_marker_94a6aca1f5cacf88c867892039e56954.bindTooltip(
+                `<div>
+                     Rainier - 4392.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_eb07c6ea82ef8571e895c549ace21f75 = L.circleMarker(
+                [46.1997986, -122.1809998],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_85dbe2486019a4f5641478468980c618 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6750b582e8379f0680278aea1a8f2d22 = $(`<div id="html_6750b582e8379f0680278aea1a8f2d22" style="width: 100.0%; height: 100.0%;"><b>St. Helens</b><br>Location: US-Washington<br>Elevation: 2549.0 m</div>`)[0];
+                popup_85dbe2486019a4f5641478468980c618.setContent(html_6750b582e8379f0680278aea1a8f2d22);
+            
+        
+
+        circle_marker_eb07c6ea82ef8571e895c549ace21f75.bindPopup(popup_85dbe2486019a4f5641478468980c618)
+        ;
+
+        
+    
+    
+            circle_marker_eb07c6ea82ef8571e895c549ace21f75.bindTooltip(
+                `<div>
+                     St. Helens - 2549.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_130b7a204e678f12415785d4f97de54f = L.circleMarker(
+                [46.2057991, -121.4909973],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkred", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_c5b7dfaff7339a12ba51df8b22a102f9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_37faa833b0d831ea95af341389e063ab = $(`<div id="html_37faa833b0d831ea95af341389e063ab" style="width: 100.0%; height: 100.0%;"><b>Adams</b><br>Location: US-Washington<br>Elevation: 3742.0 m</div>`)[0];
+                popup_c5b7dfaff7339a12ba51df8b22a102f9.setContent(html_37faa833b0d831ea95af341389e063ab);
+            
+        
+
+        circle_marker_130b7a204e678f12415785d4f97de54f.bindPopup(popup_c5b7dfaff7339a12ba51df8b22a102f9)
+        ;
+
+        
+    
+    
+            circle_marker_130b7a204e678f12415785d4f97de54f.bindTooltip(
+                `<div>
+                     Adams - 3742.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_6780233b2cdcd76d3494a8264b9f416f = L.circleMarker(
+                [45.8797989, -122.0810013],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_09a738a33d6769e14f55ed1bf8c78627 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_99418e193772286cbb9553ca601e4ceb = $(`<div id="html_99418e193772286cbb9553ca601e4ceb" style="width: 100.0%; height: 100.0%;"><b>West Crater</b><br>Location: US-Washington<br>Elevation: 1329.0 m</div>`)[0];
+                popup_09a738a33d6769e14f55ed1bf8c78627.setContent(html_99418e193772286cbb9553ca601e4ceb);
+            
+        
+
+        circle_marker_6780233b2cdcd76d3494a8264b9f416f.bindPopup(popup_09a738a33d6769e14f55ed1bf8c78627)
+        ;
+
+        
+    
+    
+            circle_marker_6780233b2cdcd76d3494a8264b9f416f.bindTooltip(
+                `<div>
+                     West Crater - 1329.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_4ddc7ef940cdf9a3010916de22c83739 = L.circleMarker(
+                [45.9297981, -121.8209991],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_0537a496bd93ee831f29dec562ff5d72 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f66e1d5fb52ae7dbb6b4683a7553f934 = $(`<div id="html_f66e1d5fb52ae7dbb6b4683a7553f934" style="width: 100.0%; height: 100.0%;"><b>Indian Heaven</b><br>Location: US-Washington<br>Elevation: 1806.0 m</div>`)[0];
+                popup_0537a496bd93ee831f29dec562ff5d72.setContent(html_f66e1d5fb52ae7dbb6b4683a7553f934);
+            
+        
+
+        circle_marker_4ddc7ef940cdf9a3010916de22c83739.bindPopup(popup_0537a496bd93ee831f29dec562ff5d72)
+        ;
+
+        
+    
+    
+            circle_marker_4ddc7ef940cdf9a3010916de22c83739.bindTooltip(
+                `<div>
+                     Indian Heaven - 1806.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_acedbc3882ffaff21908e59746b67a87 = L.circleMarker(
+                [45.3737984, -121.6910019],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkred", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_4ff2da6726768b8339aab5fe263f7ec2 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ad0f98b62074f75c49c9ec1b7af46ced = $(`<div id="html_ad0f98b62074f75c49c9ec1b7af46ced" style="width: 100.0%; height: 100.0%;"><b>Hood</b><br>Location: US-Oregon<br>Elevation: 3426.0 m</div>`)[0];
+                popup_4ff2da6726768b8339aab5fe263f7ec2.setContent(html_ad0f98b62074f75c49c9ec1b7af46ced);
+            
+        
+
+        circle_marker_acedbc3882ffaff21908e59746b67a87.bindPopup(popup_4ff2da6726768b8339aab5fe263f7ec2)
+        ;
+
+        
+    
+    
+            circle_marker_acedbc3882ffaff21908e59746b67a87.bindTooltip(
+                `<div>
+                     Hood - 3426.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_9c26b6d877210cb7076083e8c8d45409 = L.circleMarker(
+                [44.6917992, -121.8010025],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkred", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_5e59cd2c451b73939144f4587584d451 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6516aca44d4353f1bb4d59cf0c69f23f = $(`<div id="html_6516aca44d4353f1bb4d59cf0c69f23f" style="width: 100.0%; height: 100.0%;"><b>Jefferson</b><br>Location: US-Oregon<br>Elevation: 3199.0 m</div>`)[0];
+                popup_5e59cd2c451b73939144f4587584d451.setContent(html_6516aca44d4353f1bb4d59cf0c69f23f);
+            
+        
+
+        circle_marker_9c26b6d877210cb7076083e8c8d45409.bindPopup(popup_5e59cd2c451b73939144f4587584d451)
+        ;
+
+        
+    
+    
+            circle_marker_9c26b6d877210cb7076083e8c8d45409.bindTooltip(
+                `<div>
+                     Jefferson - 3199.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_a314cd070de07dc033bc6c9d3575f5fa = L.circleMarker(
+                [44.4197998, -121.7710037],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_3d28d61157bbd734b95d7d2b46d61673 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b47f22aff7867f6a20a58cef87dab298 = $(`<div id="html_b47f22aff7867f6a20a58cef87dab298" style="width: 100.0%; height: 100.0%;"><b>Blue Lake Crater</b><br>Location: US-Oregon<br>Elevation: 1230.0 m</div>`)[0];
+                popup_3d28d61157bbd734b95d7d2b46d61673.setContent(html_b47f22aff7867f6a20a58cef87dab298);
+            
+        
+
+        circle_marker_a314cd070de07dc033bc6c9d3575f5fa.bindPopup(popup_3d28d61157bbd734b95d7d2b46d61673)
+        ;
+
+        
+    
+    
+            circle_marker_a314cd070de07dc033bc6c9d3575f5fa.bindTooltip(
+                `<div>
+                     Blue Lake Crater - 1230.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_ca4f06a2129e36adb54b91a24c2f843c = L.circleMarker(
+                [44.3797989, -121.9309998],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_cf9af877782bbab477cdfdff82357ed5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ed032059f43ad8e0f71c9b9ad1578480 = $(`<div id="html_ed032059f43ad8e0f71c9b9ad1578480" style="width: 100.0%; height: 100.0%;"><b>Sand Mountain Field</b><br>Location: US-Oregon<br>Elevation: 1664.0 m</div>`)[0];
+                popup_cf9af877782bbab477cdfdff82357ed5.setContent(html_ed032059f43ad8e0f71c9b9ad1578480);
+            
+        
+
+        circle_marker_ca4f06a2129e36adb54b91a24c2f843c.bindPopup(popup_cf9af877782bbab477cdfdff82357ed5)
+        ;
+
+        
+    
+    
+            circle_marker_ca4f06a2129e36adb54b91a24c2f843c.bindTooltip(
+                `<div>
+                     Sand Mountain Field - 1664.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_f3e5c274d04d4699a725d01d90eab2fa = L.circleMarker(
+                [44.3317986, -121.8310013],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_cadfefbbb4b798666a6b92fe73a95886 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9330d181425944abfcc5a433c1863e29 = $(`<div id="html_9330d181425944abfcc5a433c1863e29" style="width: 100.0%; height: 100.0%;"><b>Washington</b><br>Location: US-Oregon<br>Elevation: 2376.0 m</div>`)[0];
+                popup_cadfefbbb4b798666a6b92fe73a95886.setContent(html_9330d181425944abfcc5a433c1863e29);
+            
+        
+
+        circle_marker_f3e5c274d04d4699a725d01d90eab2fa.bindPopup(popup_cadfefbbb4b798666a6b92fe73a95886)
+        ;
+
+        
+    
+    
+            circle_marker_f3e5c274d04d4699a725d01d90eab2fa.bindTooltip(
+                `<div>
+                     Washington - 2376.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_17daff7bf4133d099948f8c044501093 = L.circleMarker(
+                [44.2848015, -121.8410034],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_4fd31e5a9f15278736f8a19f776a385e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7a99a43fa9fc38ff3298c4ca6a95dc2e = $(`<div id="html_7a99a43fa9fc38ff3298c4ca6a95dc2e" style="width: 100.0%; height: 100.0%;"><b>Belknap</b><br>Location: US-Oregon<br>Elevation: 2095.0 m</div>`)[0];
+                popup_4fd31e5a9f15278736f8a19f776a385e.setContent(html_7a99a43fa9fc38ff3298c4ca6a95dc2e);
+            
+        
+
+        circle_marker_17daff7bf4133d099948f8c044501093.bindPopup(popup_4fd31e5a9f15278736f8a19f776a385e)
+        ;
+
+        
+    
+    
+            circle_marker_17daff7bf4133d099948f8c044501093.bindTooltip(
+                `<div>
+                     Belknap - 2095.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_b36d13bcbc3da7e681d37e52be43b023 = L.circleMarker(
+                [44.1697998, -121.7710037],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkred", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_135e4005f621cda695d4dac601e784b8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a29c503510d67c9ece4b8d826731963d = $(`<div id="html_a29c503510d67c9ece4b8d826731963d" style="width: 100.0%; height: 100.0%;"><b>North Sister Field</b><br>Location: US-Oregon<br>Elevation: 3074.0 m</div>`)[0];
+                popup_135e4005f621cda695d4dac601e784b8.setContent(html_a29c503510d67c9ece4b8d826731963d);
+            
+        
+
+        circle_marker_b36d13bcbc3da7e681d37e52be43b023.bindPopup(popup_135e4005f621cda695d4dac601e784b8)
+        ;
+
+        
+    
+    
+            circle_marker_b36d13bcbc3da7e681d37e52be43b023.bindTooltip(
+                `<div>
+                     North Sister Field - 3074.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_384a6aded3f7b1d3cfaecd65fb6510a8 = L.circleMarker(
+                [44.0998001, -121.7710037],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkred", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_51e438f732be4b0272528d03ef399a81 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e07e4536ad18cb28de3eab82e1a6f887 = $(`<div id="html_e07e4536ad18cb28de3eab82e1a6f887" style="width: 100.0%; height: 100.0%;"><b>South Sister</b><br>Location: US-Oregon<br>Elevation: 3157.0 m</div>`)[0];
+                popup_51e438f732be4b0272528d03ef399a81.setContent(html_e07e4536ad18cb28de3eab82e1a6f887);
+            
+        
+
+        circle_marker_384a6aded3f7b1d3cfaecd65fb6510a8.bindPopup(popup_51e438f732be4b0272528d03ef399a81)
+        ;
+
+        
+    
+    
+            circle_marker_384a6aded3f7b1d3cfaecd65fb6510a8.bindTooltip(
+                `<div>
+                     South Sister - 3157.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_9ee9af2f79469f1c748ada80b2ba0e22 = L.circleMarker(
+                [43.9788017, -121.6809998],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_a060ce9693577e2820a2917e9a8c70b3 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e13dfb3642b0682eae1c1b0415430796 = $(`<div id="html_e13dfb3642b0682eae1c1b0415430796" style="width: 100.0%; height: 100.0%;"><b>Bachelor</b><br>Location: US-Oregon<br>Elevation: 2763.0 m</div>`)[0];
+                popup_a060ce9693577e2820a2917e9a8c70b3.setContent(html_e13dfb3642b0682eae1c1b0415430796);
+            
+        
+
+        circle_marker_9ee9af2f79469f1c748ada80b2ba0e22.bindPopup(popup_a060ce9693577e2820a2917e9a8c70b3)
+        ;
+
+        
+    
+    
+            circle_marker_9ee9af2f79469f1c748ada80b2ba0e22.bindTooltip(
+                `<div>
+                     Bachelor - 2763.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_b13c487cdf707dccd2911bdcbfdca260 = L.circleMarker(
+                [43.7218018, -121.2210007],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_548c6832365c42b6852a260f5b9aad21 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_240b3830bdf49925a82578b8beca1b8c = $(`<div id="html_240b3830bdf49925a82578b8beca1b8c" style="width: 100.0%; height: 100.0%;"><b>Newberry Volcano</b><br>Location: US-Oregon<br>Elevation: 2434.0 m</div>`)[0];
+                popup_548c6832365c42b6852a260f5b9aad21.setContent(html_240b3830bdf49925a82578b8beca1b8c);
+            
+        
+
+        circle_marker_b13c487cdf707dccd2911bdcbfdca260.bindPopup(popup_548c6832365c42b6852a260f5b9aad21)
+        ;
+
+        
+    
+    
+            circle_marker_b13c487cdf707dccd2911bdcbfdca260.bindTooltip(
+                `<div>
+                     Newberry Volcano - 2434.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_4a993aaa7cd53402079b8cc6472c6a0e = L.circleMarker(
+                [43.5698013, -121.8209991],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_44ce6ec0623a55788d2a13a640d00aa1 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8c304a7dc0754c5f0e9d14fdda61b1ea = $(`<div id="html_8c304a7dc0754c5f0e9d14fdda61b1ea" style="width: 100.0%; height: 100.0%;"><b>Davis Lake</b><br>Location: US-Oregon<br>Elevation: 2163.0 m</div>`)[0];
+                popup_44ce6ec0623a55788d2a13a640d00aa1.setContent(html_8c304a7dc0754c5f0e9d14fdda61b1ea);
+            
+        
+
+        circle_marker_4a993aaa7cd53402079b8cc6472c6a0e.bindPopup(popup_44ce6ec0623a55788d2a13a640d00aa1)
+        ;
+
+        
+    
+    
+            circle_marker_4a993aaa7cd53402079b8cc6472c6a0e.bindTooltip(
+                `<div>
+                     Davis Lake - 2163.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_4fc062c07cda21eaf765649d9ccb416b = L.circleMarker(
+                [43.5119019, -120.8610001],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_335cd54c5d14a221a70958956d7388e6 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c446e53c25fe38838b42c639535d2d2c = $(`<div id="html_c446e53c25fe38838b42c639535d2d2c" style="width: 100.0%; height: 100.0%;"><b>Devils Garden</b><br>Location: US-Oregon<br>Elevation: 1698.0 m</div>`)[0];
+                popup_335cd54c5d14a221a70958956d7388e6.setContent(html_c446e53c25fe38838b42c639535d2d2c);
+            
+        
+
+        circle_marker_4fc062c07cda21eaf765649d9ccb416b.bindPopup(popup_335cd54c5d14a221a70958956d7388e6)
+        ;
+
+        
+    
+    
+            circle_marker_4fc062c07cda21eaf765649d9ccb416b.bindTooltip(
+                `<div>
+                     Devils Garden - 1698.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_58a3042c3f26a1f0b43349a6bef1f335 = L.circleMarker(
+                [43.240799, -122.1009979],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_ceefafc8e4bf4b3e7f5da5a87ef19633 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_09af4fe603a1dbcc6e0fbb2c7f87b5b8 = $(`<div id="html_09af4fe603a1dbcc6e0fbb2c7f87b5b8" style="width: 100.0%; height: 100.0%;"><b>Cinnamon Butte</b><br>Location: US-Oregon<br>Elevation: 1956.0 m</div>`)[0];
+                popup_ceefafc8e4bf4b3e7f5da5a87ef19633.setContent(html_09af4fe603a1dbcc6e0fbb2c7f87b5b8);
+            
+        
+
+        circle_marker_58a3042c3f26a1f0b43349a6bef1f335.bindPopup(popup_ceefafc8e4bf4b3e7f5da5a87ef19633)
+        ;
+
+        
+    
+    
+            circle_marker_58a3042c3f26a1f0b43349a6bef1f335.bindTooltip(
+                `<div>
+                     Cinnamon Butte - 1956.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_79528e0275784ce80868d98212840bee = L.circleMarker(
+                [43.4719009, -120.7509995],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_2a4d0a4eccbc76d384e965afe6a24217 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_347cb9dbc5dc655c985ad448a65777eb = $(`<div id="html_347cb9dbc5dc655c985ad448a65777eb" style="width: 100.0%; height: 100.0%;"><b>Squaw Ridge Lava Field</b><br>Location: US-Oregon<br>Elevation: 1711.0 m</div>`)[0];
+                popup_2a4d0a4eccbc76d384e965afe6a24217.setContent(html_347cb9dbc5dc655c985ad448a65777eb);
+            
+        
+
+        circle_marker_79528e0275784ce80868d98212840bee.bindPopup(popup_2a4d0a4eccbc76d384e965afe6a24217)
+        ;
+
+        
+    
+    
+            circle_marker_79528e0275784ce80868d98212840bee.bindTooltip(
+                `<div>
+                     Squaw Ridge Lava Field - 1711.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_5c0ccb59e8e830bbee404d3e6ad9a055 = L.circleMarker(
+                [43.3609009, -120.6610031],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_0cdc9e31fd809b3b3cefb01b5bc4cd66 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_54ea58be917ac480327981da84e72b69 = $(`<div id="html_54ea58be917ac480327981da84e72b69" style="width: 100.0%; height: 100.0%;"><b>Four Craters Lava Field</b><br>Location: US-Oregon<br>Elevation: 1501.0 m</div>`)[0];
+                popup_0cdc9e31fd809b3b3cefb01b5bc4cd66.setContent(html_54ea58be917ac480327981da84e72b69);
+            
+        
+
+        circle_marker_5c0ccb59e8e830bbee404d3e6ad9a055.bindPopup(popup_0cdc9e31fd809b3b3cefb01b5bc4cd66)
+        ;
+
+        
+    
+    
+            circle_marker_5c0ccb59e8e830bbee404d3e6ad9a055.bindTooltip(
+                `<div>
+                     Four Craters Lava Field - 1501.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_6bf46ab5694f895678eb938af166993a = L.circleMarker(
+                [42.9299011, -122.1210022],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_3778a55ca56bdc42a6136696a4626748 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c36110e505097a1b27f0e02afae78268 = $(`<div id="html_c36110e505097a1b27f0e02afae78268" style="width: 100.0%; height: 100.0%;"><b>Crater Lake</b><br>Location: US-Oregon<br>Elevation: 2487.0 m</div>`)[0];
+                popup_3778a55ca56bdc42a6136696a4626748.setContent(html_c36110e505097a1b27f0e02afae78268);
+            
+        
+
+        circle_marker_6bf46ab5694f895678eb938af166993a.bindPopup(popup_3778a55ca56bdc42a6136696a4626748)
+        ;
+
+        
+    
+    
+            circle_marker_6bf46ab5694f895678eb938af166993a.bindTooltip(
+                `<div>
+                     Crater Lake - 2487.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_39766c55a2dbbface07d56a2594d9aca = L.circleMarker(
+                [44.4299011, -110.6709976],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_8388682b9a4b3f4836ec7c1ffe1e5f9c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_37aa5f78e8bbbaace1c526741da9fcb0 = $(`<div id="html_37aa5f78e8bbbaace1c526741da9fcb0" style="width: 100.0%; height: 100.0%;"><b>Yellowstone</b><br>Location: US-Wyoming<br>Elevation: 2805.0 m</div>`)[0];
+                popup_8388682b9a4b3f4836ec7c1ffe1e5f9c.setContent(html_37aa5f78e8bbbaace1c526741da9fcb0);
+            
+        
+
+        circle_marker_39766c55a2dbbface07d56a2594d9aca.bindPopup(popup_8388682b9a4b3f4836ec7c1ffe1e5f9c)
+        ;
+
+        
+    
+    
+            circle_marker_39766c55a2dbbface07d56a2594d9aca.bindTooltip(
+                `<div>
+                     Yellowstone - 2805.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_e38df232bbd25514108dc910da7e942b = L.circleMarker(
+                [43.0998993, -118.7509995],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_5eef33de8952f6fc7b3cea8d101ce59f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_983854a3af6f389ec941998966339628 = $(`<div id="html_983854a3af6f389ec941998966339628" style="width: 100.0%; height: 100.0%;"><b>Diamond Craters</b><br>Location: US-Oregon<br>Elevation: 1435.0 m</div>`)[0];
+                popup_5eef33de8952f6fc7b3cea8d101ce59f.setContent(html_983854a3af6f389ec941998966339628);
+            
+        
+
+        circle_marker_e38df232bbd25514108dc910da7e942b.bindPopup(popup_5eef33de8952f6fc7b3cea8d101ce59f)
+        ;
+
+        
+    
+    
+            circle_marker_e38df232bbd25514108dc910da7e942b.bindTooltip(
+                `<div>
+                     Diamond Craters - 1435.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_a12bb061c3c8a7c75a3eeeec027f3b68 = L.circleMarker(
+                [43.1498985, -117.4710007],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_bb1b1131de865740bf441bb7a72f4094 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0f23744ed4ea97a020434d89f42c1ba1 = $(`<div id="html_0f23744ed4ea97a020434d89f42c1ba1" style="width: 100.0%; height: 100.0%;"><b>Jordan Craters</b><br>Location: US-Oregon<br>Elevation: 1473.0 m</div>`)[0];
+                popup_bb1b1131de865740bf441bb7a72f4094.setContent(html_0f23744ed4ea97a020434d89f42c1ba1);
+            
+        
+
+        circle_marker_a12bb061c3c8a7c75a3eeeec027f3b68.bindPopup(popup_bb1b1131de865740bf441bb7a72f4094)
+        ;
+
+        
+    
+    
+            circle_marker_a12bb061c3c8a7c75a3eeeec027f3b68.bindTooltip(
+                `<div>
+                     Jordan Craters - 1473.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_1c77c93495a4fce6a40dd93789df22ec = L.circleMarker(
+                [42.9999008, -117.8010025],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_7dd572463ccd2ab243ff63bf1b07d3b3 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4579ebaf9d60a6bac9299e49a5d4b0dc = $(`<div id="html_4579ebaf9d60a6bac9299e49a5d4b0dc" style="width: 100.0%; height: 100.0%;"><b>Saddle Butte</b><br>Location: US-Oregon<br>Elevation: 1700.0 m</div>`)[0];
+                popup_7dd572463ccd2ab243ff63bf1b07d3b3.setContent(html_4579ebaf9d60a6bac9299e49a5d4b0dc);
+            
+        
+
+        circle_marker_1c77c93495a4fce6a40dd93789df22ec.bindPopup(popup_7dd572463ccd2ab243ff63bf1b07d3b3)
+        ;
+
+        
+    
+    
+            circle_marker_1c77c93495a4fce6a40dd93789df22ec.bindTooltip(
+                `<div>
+                     Saddle Butte - 1700.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_33b02da62f05f50d8db2c23a1fca5336 = L.circleMarker(
+                [43.419899, -113.5009995],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_355a09e0a1ea6f44d9d97bfc670d1236 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9c55f1c524a380ce6c781c0897cfa1d4 = $(`<div id="html_9c55f1c524a380ce6c781c0897cfa1d4" style="width: 100.0%; height: 100.0%;"><b>Craters of the Moon</b><br>Location: US-Idaho<br>Elevation: 2005.0 m</div>`)[0];
+                popup_355a09e0a1ea6f44d9d97bfc670d1236.setContent(html_9c55f1c524a380ce6c781c0897cfa1d4);
+            
+        
+
+        circle_marker_33b02da62f05f50d8db2c23a1fca5336.bindPopup(popup_355a09e0a1ea6f44d9d97bfc670d1236)
+        ;
+
+        
+    
+    
+            circle_marker_33b02da62f05f50d8db2c23a1fca5336.bindTooltip(
+                `<div>
+                     Craters of the Moon - 2005.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_4d8007c3f2ec7aa28784529fa13aa7b1 = L.circleMarker(
+                [43.4999008, -112.4509964],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_902b37c8a4157492ed9706cca7498d89 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_5cf756c11ada98e92fecca34e09b1f0e = $(`<div id="html_5cf756c11ada98e92fecca34e09b1f0e" style="width: 100.0%; height: 100.0%;"><b>Hell Half Acre</b><br>Location: US-Idaho<br>Elevation: 1631.0 m</div>`)[0];
+                popup_902b37c8a4157492ed9706cca7498d89.setContent(html_5cf756c11ada98e92fecca34e09b1f0e);
+            
+        
+
+        circle_marker_4d8007c3f2ec7aa28784529fa13aa7b1.bindPopup(popup_902b37c8a4157492ed9706cca7498d89)
+        ;
+
+        
+    
+    
+            circle_marker_4d8007c3f2ec7aa28784529fa13aa7b1.bindTooltip(
+                `<div>
+                     Hell Half Acre - 1631.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_0123f37c05a50c5b524142cfeb98aefc = L.circleMarker(
+                [43.1799011, -114.3509979],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_ad66ec32e7a096dd970c5bb19431ef21 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7602413c5d694f7989b00528d24cf787 = $(`<div id="html_7602413c5d694f7989b00528d24cf787" style="width: 100.0%; height: 100.0%;"><b>Shoshone Lava Field</b><br>Location: US-Idaho<br>Elevation: 1478.0 m</div>`)[0];
+                popup_ad66ec32e7a096dd970c5bb19431ef21.setContent(html_7602413c5d694f7989b00528d24cf787);
+            
+        
+
+        circle_marker_0123f37c05a50c5b524142cfeb98aefc.bindPopup(popup_ad66ec32e7a096dd970c5bb19431ef21)
+        ;
+
+        
+    
+    
+            circle_marker_0123f37c05a50c5b524142cfeb98aefc.bindTooltip(
+                `<div>
+                     Shoshone Lava Field - 1478.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_261c42155ce758c4770c3f5d104d96d8 = L.circleMarker(
+                [42.6058998, -117.5810013],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_327918338aa47d2af3f834a87aaa04a1 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c9dc2ad33cf7f3aba47f88ef5f90e1f2 = $(`<div id="html_c9dc2ad33cf7f3aba47f88ef5f90e1f2" style="width: 100.0%; height: 100.0%;"><b>Jackies Butte</b><br>Location: US-Oregon<br>Elevation: 1418.0 m</div>`)[0];
+                popup_327918338aa47d2af3f834a87aaa04a1.setContent(html_c9dc2ad33cf7f3aba47f88ef5f90e1f2);
+            
+        
+
+        circle_marker_261c42155ce758c4770c3f5d104d96d8.bindPopup(popup_327918338aa47d2af3f834a87aaa04a1)
+        ;
+
+        
+    
+    
+            circle_marker_261c42155ce758c4770c3f5d104d96d8.bindTooltip(
+                `<div>
+                     Jackies Butte - 1418.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_e8cfc0773e0fbcfeabffac0776a1da84 = L.circleMarker(
+                [41.5798988, -121.5709991],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_e953ab8de524c41adb3456878f2c62e9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c664e101384cb18659aba76e17cec777 = $(`<div id="html_c664e101384cb18659aba76e17cec777" style="width: 100.0%; height: 100.0%;"><b>Medicine Lake</b><br>Location: US-California<br>Elevation: 2412.0 m</div>`)[0];
+                popup_e953ab8de524c41adb3456878f2c62e9.setContent(html_c664e101384cb18659aba76e17cec777);
+            
+        
+
+        circle_marker_e8cfc0773e0fbcfeabffac0776a1da84.bindPopup(popup_e953ab8de524c41adb3456878f2c62e9)
+        ;
+
+        
+    
+    
+            circle_marker_e8cfc0773e0fbcfeabffac0776a1da84.bindTooltip(
+                `<div>
+                     Medicine Lake - 2412.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_8e4c875aa39bcef7cb964b5520e9d2f1 = L.circleMarker(
+                [42.8799019, -113.2210007],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_6746a06555bb29d1bd331e28b7901ffc = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7698d548fb4555954585f5d003cfeffe = $(`<div id="html_7698d548fb4555954585f5d003cfeffe" style="width: 100.0%; height: 100.0%;"><b>Wapi Lava Field</b><br>Location: US-Idaho<br>Elevation: 1604.0 m</div>`)[0];
+                popup_6746a06555bb29d1bd331e28b7901ffc.setContent(html_7698d548fb4555954585f5d003cfeffe);
+            
+        
+
+        circle_marker_8e4c875aa39bcef7cb964b5520e9d2f1.bindPopup(popup_6746a06555bb29d1bd331e28b7901ffc)
+        ;
+
+        
+    
+    
+            circle_marker_8e4c875aa39bcef7cb964b5520e9d2f1.bindTooltip(
+                `<div>
+                     Wapi Lava Field - 1604.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_f5143f4fc8eb2a047fa3f682f8a5ede3 = L.circleMarker(
+                [41.419899, -122.2009964],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkred", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_e64c6ec59f262f072daef4e275016392 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_447951fa6e79a235ee5621d7c3bafa34 = $(`<div id="html_447951fa6e79a235ee5621d7c3bafa34" style="width: 100.0%; height: 100.0%;"><b>Shasta</b><br>Location: US-California<br>Elevation: 4317.0 m</div>`)[0];
+                popup_e64c6ec59f262f072daef4e275016392.setContent(html_447951fa6e79a235ee5621d7c3bafa34);
+            
+        
+
+        circle_marker_f5143f4fc8eb2a047fa3f682f8a5ede3.bindPopup(popup_e64c6ec59f262f072daef4e275016392)
+        ;
+
+        
+    
+    
+            circle_marker_f5143f4fc8eb2a047fa3f682f8a5ede3.bindTooltip(
+                `<div>
+                     Shasta - 4317.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_b9ce4e9852e7e1f0961156393ac99430 = L.circleMarker(
+                [41.1778984, -121.4410019],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_d3e806f392491ae18d70246b590ad161 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_587c15a7d58a220f09a25756ee3476df = $(`<div id="html_587c15a7d58a220f09a25756ee3476df" style="width: 100.0%; height: 100.0%;"><b>Brushy Butte</b><br>Location: US-California<br>Elevation: 1174.0 m</div>`)[0];
+                popup_d3e806f392491ae18d70246b590ad161.setContent(html_587c15a7d58a220f09a25756ee3476df);
+            
+        
+
+        circle_marker_b9ce4e9852e7e1f0961156393ac99430.bindPopup(popup_d3e806f392491ae18d70246b590ad161)
+        ;
+
+        
+    
+    
+            circle_marker_b9ce4e9852e7e1f0961156393ac99430.bindTooltip(
+                `<div>
+                     Brushy Butte - 1174.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_065782b8de831fa52ec0d0733a7126e2 = L.circleMarker(
+                [40.9548988, -121.3610001],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_15d8cc6f2f40af6ec4ff7a53aced302c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_151f4001971a5fa40b7d74cc0bb69b06 = $(`<div id="html_151f4001971a5fa40b7d74cc0bb69b06" style="width: 100.0%; height: 100.0%;"><b>Big Cave</b><br>Location: US-California<br>Elevation: 1259.0 m</div>`)[0];
+                popup_15d8cc6f2f40af6ec4ff7a53aced302c.setContent(html_151f4001971a5fa40b7d74cc0bb69b06);
+            
+        
+
+        circle_marker_065782b8de831fa52ec0d0733a7126e2.bindPopup(popup_15d8cc6f2f40af6ec4ff7a53aced302c)
+        ;
+
+        
+    
+    
+            circle_marker_065782b8de831fa52ec0d0733a7126e2.bindTooltip(
+                `<div>
+                     Big Cave - 1259.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_a01a8e09f6893a25ed1a6f59d07ce030 = L.circleMarker(
+                [40.7798996, -121.6009979],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_4fc3d4011135ac53250b5bf177d533d6 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b9f5468ec5a837ed1b5ae0151e339504 = $(`<div id="html_b9f5468ec5a837ed1b5ae0151e339504" style="width: 100.0%; height: 100.0%;"><b>Twin Buttes</b><br>Location: US-California<br>Elevation: 1631.0 m</div>`)[0];
+                popup_4fc3d4011135ac53250b5bf177d533d6.setContent(html_b9f5468ec5a837ed1b5ae0151e339504);
+            
+        
+
+        circle_marker_a01a8e09f6893a25ed1a6f59d07ce030.bindPopup(popup_4fc3d4011135ac53250b5bf177d533d6)
+        ;
+
+        
+    
+    
+            circle_marker_a01a8e09f6893a25ed1a6f59d07ce030.bindTooltip(
+                `<div>
+                     Twin Buttes - 1631.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_b50823a777a363dbec836a17d6c33520 = L.circleMarker(
+                [40.6799011, -121.5510025],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_0aacd81ccb03b7b366add6ec2bed711d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_759166aeb51bfaf945d2b6c852a54e69 = $(`<div id="html_759166aeb51bfaf945d2b6c852a54e69" style="width: 100.0%; height: 100.0%;"><b>Tumble Buttes</b><br>Location: US-California<br>Elevation: 2191.0 m</div>`)[0];
+                popup_0aacd81ccb03b7b366add6ec2bed711d.setContent(html_759166aeb51bfaf945d2b6c852a54e69);
+            
+        
+
+        circle_marker_b50823a777a363dbec836a17d6c33520.bindPopup(popup_0aacd81ccb03b7b366add6ec2bed711d)
+        ;
+
+        
+    
+    
+            circle_marker_b50823a777a363dbec836a17d6c33520.bindTooltip(
+                `<div>
+                     Tumble Buttes - 2191.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_e039d620b9d3ed2dfe84d34f61d1dff4 = L.circleMarker(
+                [40.6299019, -120.8310013],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_7b13c8aa75d3d24b0db6aea0033f36f4 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_64f437921e85decd75cf4f83a9e8c54f = $(`<div id="html_64f437921e85decd75cf4f83a9e8c54f" style="width: 100.0%; height: 100.0%;"><b>Eagle Lake Field</b><br>Location: US-California<br>Elevation: 1652.0 m</div>`)[0];
+                popup_7b13c8aa75d3d24b0db6aea0033f36f4.setContent(html_64f437921e85decd75cf4f83a9e8c54f);
+            
+        
+
+        circle_marker_e039d620b9d3ed2dfe84d34f61d1dff4.bindPopup(popup_7b13c8aa75d3d24b0db6aea0033f36f4)
+        ;
+
+        
+    
+    
+            circle_marker_e039d620b9d3ed2dfe84d34f61d1dff4.bindTooltip(
+                `<div>
+                     Eagle Lake Field - 1652.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_178ae5d4110a7190dd22897fd3c8af96 = L.circleMarker(
+                [40.4919014, -121.5009995],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkred", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_ebaa8dc7051009a14dd06747ffe97852 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e1f78e5a44146e1caa40d24e36fb1981 = $(`<div id="html_e1f78e5a44146e1caa40d24e36fb1981" style="width: 100.0%; height: 100.0%;"><b>Lassen Volc Center</b><br>Location: US-California<br>Elevation: 3187.0 m</div>`)[0];
+                popup_ebaa8dc7051009a14dd06747ffe97852.setContent(html_e1f78e5a44146e1caa40d24e36fb1981);
+            
+        
+
+        circle_marker_178ae5d4110a7190dd22897fd3c8af96.bindPopup(popup_ebaa8dc7051009a14dd06747ffe97852)
+        ;
+
+        
+    
+    
+            circle_marker_178ae5d4110a7190dd22897fd3c8af96.bindTooltip(
+                `<div>
+                     Lassen Volc Center - 3187.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_f77fc44671d3f31c74bf2b77f03f4f9a = L.circleMarker(
+                [38.9698982, -122.7710037],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_28eb7b755ffe3791308427f2ef184a1b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f43b21df1cbe8048d442193bf8ea0338 = $(`<div id="html_f43b21df1cbe8048d442193bf8ea0338" style="width: 100.0%; height: 100.0%;"><b>Clear Lake</b><br>Location: US-California<br>Elevation: 1439.0 m</div>`)[0];
+                popup_28eb7b755ffe3791308427f2ef184a1b.setContent(html_f43b21df1cbe8048d442193bf8ea0338);
+            
+        
+
+        circle_marker_f77fc44671d3f31c74bf2b77f03f4f9a.bindPopup(popup_28eb7b755ffe3791308427f2ef184a1b)
+        ;
+
+        
+    
+    
+            circle_marker_f77fc44671d3f31c74bf2b77f03f4f9a.bindTooltip(
+                `<div>
+                     Clear Lake - 1439.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_da2d59fdeb88a0d7f738468ca7b9a175 = L.circleMarker(
+                [39.3749008, -119.7210007],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_406edfead98969c2b98c47d4d015e65b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b9f87ae3e109da447a58db40449bde66 = $(`<div id="html_b9f87ae3e109da447a58db40449bde66" style="width: 100.0%; height: 100.0%;"><b>Steamboat Springs</b><br>Location: US-Nevada<br>Elevation: 1415.0 m</div>`)[0];
+                popup_406edfead98969c2b98c47d4d015e65b.setContent(html_b9f87ae3e109da447a58db40449bde66);
+            
+        
+
+        circle_marker_da2d59fdeb88a0d7f738468ca7b9a175.bindPopup(popup_406edfead98969c2b98c47d4d015e65b)
+        ;
+
+        
+    
+    
+            circle_marker_da2d59fdeb88a0d7f738468ca7b9a175.bindTooltip(
+                `<div>
+                     Steamboat Springs - 1415.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_9de2b4f11fe4bc7b3177250b19b59ed1 = L.circleMarker(
+                [39.6500015, -107.0309982],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_98fa7598d53eb104f4df1f9aff94cf6d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7643256c33d87f30d2bc154305d1ebcb = $(`<div id="html_7643256c33d87f30d2bc154305d1ebcb" style="width: 100.0%; height: 100.0%;"><b>Dotsero</b><br>Location: US-Colorado<br>Elevation: 2230.0 m</div>`)[0];
+                popup_98fa7598d53eb104f4df1f9aff94cf6d.setContent(html_7643256c33d87f30d2bc154305d1ebcb);
+            
+        
+
+        circle_marker_9de2b4f11fe4bc7b3177250b19b59ed1.bindPopup(popup_98fa7598d53eb104f4df1f9aff94cf6d)
+        ;
+
+        
+    
+    
+            circle_marker_9de2b4f11fe4bc7b3177250b19b59ed1.bindTooltip(
+                `<div>
+                     Dotsero - 2230.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_b6dca44f2ca3944d33151b6a4d3b17e5 = L.circleMarker(
+                [37.9999008, -119.0309982],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_1be89e546506c96f82a315b66ca3a353 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e1201519b52f3f5d7fa11458f5d91747 = $(`<div id="html_e1201519b52f3f5d7fa11458f5d91747" style="width: 100.0%; height: 100.0%;"><b>Mono Lake Volc Field</b><br>Location: US-California<br>Elevation: 2121.0 m</div>`)[0];
+                popup_1be89e546506c96f82a315b66ca3a353.setContent(html_e1201519b52f3f5d7fa11458f5d91747);
+            
+        
+
+        circle_marker_b6dca44f2ca3944d33151b6a4d3b17e5.bindPopup(popup_1be89e546506c96f82a315b66ca3a353)
+        ;
+
+        
+    
+    
+            circle_marker_b6dca44f2ca3944d33151b6a4d3b17e5.bindTooltip(
+                `<div>
+                     Mono Lake Volc Field - 2121.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_9ae4846512bfd426fd2632d71bfbaf8f = L.circleMarker(
+                [38.9700012, -112.5009995],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_88121eabdb3291aa9870ea40a03e15a4 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6ba9706fcdfb3c72999310244e85dc63 = $(`<div id="html_6ba9706fcdfb3c72999310244e85dc63" style="width: 100.0%; height: 100.0%;"><b>Black Rock Desert</b><br>Location: US-Utah<br>Elevation: 1800.0 m</div>`)[0];
+                popup_88121eabdb3291aa9870ea40a03e15a4.setContent(html_6ba9706fcdfb3c72999310244e85dc63);
+            
+        
+
+        circle_marker_9ae4846512bfd426fd2632d71bfbaf8f.bindPopup(popup_88121eabdb3291aa9870ea40a03e15a4)
+        ;
+
+        
+    
+    
+            circle_marker_9ae4846512bfd426fd2632d71bfbaf8f.bindTooltip(
+                `<div>
+                     Black Rock Desert - 1800.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_1ef6d5ae24f7a6b31248e23a19521910 = L.circleMarker(
+                [37.8799019, -119.0009995],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_c46e5555b55cfe96109cfe446f1a787f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_838c3312822a303e26917482184826ca = $(`<div id="html_838c3312822a303e26917482184826ca" style="width: 100.0%; height: 100.0%;"><b>Mono Craters</b><br>Location: US-California<br>Elevation: 2796.0 m</div>`)[0];
+                popup_c46e5555b55cfe96109cfe446f1a787f.setContent(html_838c3312822a303e26917482184826ca);
+            
+        
+
+        circle_marker_1ef6d5ae24f7a6b31248e23a19521910.bindPopup(popup_c46e5555b55cfe96109cfe446f1a787f)
+        ;
+
+        
+    
+    
+            circle_marker_1ef6d5ae24f7a6b31248e23a19521910.bindTooltip(
+                `<div>
+                     Mono Craters - 2796.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_10b18ff380aa77888b0c98ed6b06cca1 = L.circleMarker(
+                [37.6918983, -119.0210037],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_039710eed20183907d0a5c4547c72282 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0508e0933d094cf01b9050f1a6f1e930 = $(`<div id="html_0508e0933d094cf01b9050f1a6f1e930" style="width: 100.0%; height: 100.0%;"><b>Inyo Craters</b><br>Location: US-California<br>Elevation: 2629.0 m</div>`)[0];
+                popup_039710eed20183907d0a5c4547c72282.setContent(html_0508e0933d094cf01b9050f1a6f1e930);
+            
+        
+
+        circle_marker_10b18ff380aa77888b0c98ed6b06cca1.bindPopup(popup_039710eed20183907d0a5c4547c72282)
+        ;
+
+        
+    
+    
+            circle_marker_10b18ff380aa77888b0c98ed6b06cca1.bindTooltip(
+                `<div>
+                     Inyo Craters - 2629.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_630dd6d34388426b0b0852276e0cbf52 = L.circleMarker(
+                [37.6999016, -118.8710022],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkred", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_b3d75e9c642be7ae9437f5c89b2d47dc = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9023c591bc3113c9631e9daf5d2f4615 = $(`<div id="html_9023c591bc3113c9631e9daf5d2f4615" style="width: 100.0%; height: 100.0%;"><b>Long Valley</b><br>Location: US-California<br>Elevation: 3390.0 m</div>`)[0];
+                popup_b3d75e9c642be7ae9437f5c89b2d47dc.setContent(html_9023c591bc3113c9631e9daf5d2f4615);
+            
+        
+
+        circle_marker_630dd6d34388426b0b0852276e0cbf52.bindPopup(popup_b3d75e9c642be7ae9437f5c89b2d47dc)
+        ;
+
+        
+    
+    
+            circle_marker_630dd6d34388426b0b0852276e0cbf52.bindTooltip(
+                `<div>
+                     Long Valley - 3390.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_9ef60cd8e562f11498fd7ca7934547d4 = L.circleMarker(
+                [37.5798988, -119.0510025],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_61ca3405d3fac51fecb603010a0a0b5d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c4823325cf0ba2c7883c0852aabf61f9 = $(`<div id="html_c4823325cf0ba2c7883c0852aabf61f9" style="width: 100.0%; height: 100.0%;"><b>Red Cones</b><br>Location: US-California<br>Elevation: 2748.0 m</div>`)[0];
+                popup_61ca3405d3fac51fecb603010a0a0b5d.setContent(html_c4823325cf0ba2c7883c0852aabf61f9);
+            
+        
+
+        circle_marker_9ef60cd8e562f11498fd7ca7934547d4.bindPopup(popup_61ca3405d3fac51fecb603010a0a0b5d)
+        ;
+
+        
+    
+    
+            circle_marker_9ef60cd8e562f11498fd7ca7934547d4.bindTooltip(
+                `<div>
+                     Red Cones - 2748.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_b5a9ad1a95d6ce8a3c04e9ec3dded09d = L.circleMarker(
+                [37.0199013, -117.4509964],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_9d39d54a1b561d1ccb492cd80adfdd7c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_38c096ae8424fbbc2071d09baa9adf20 = $(`<div id="html_38c096ae8424fbbc2071d09baa9adf20" style="width: 100.0%; height: 100.0%;"><b>Ubehebe Craters</b><br>Location: US-California<br>Elevation: 752.0 m</div>`)[0];
+                popup_9d39d54a1b561d1ccb492cd80adfdd7c.setContent(html_38c096ae8424fbbc2071d09baa9adf20);
+            
+        
+
+        circle_marker_b5a9ad1a95d6ce8a3c04e9ec3dded09d.bindPopup(popup_9d39d54a1b561d1ccb492cd80adfdd7c)
+        ;
+
+        
+    
+    
+            circle_marker_b5a9ad1a95d6ce8a3c04e9ec3dded09d.bindTooltip(
+                `<div>
+                     Ubehebe Craters - 752.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_f00e2b9c0565e298eb6f3831f7c0c74b = L.circleMarker(
+                [37.5800018, -112.6709976],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_9d64ad3d18e5a3fb01e5e0c585c46799 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_958ea2653c6f453809adf29dcb7cfcd4 = $(`<div id="html_958ea2653c6f453809adf29dcb7cfcd4" style="width: 100.0%; height: 100.0%;"><b>Markagunt Plateau</b><br>Location: US-Utah<br>Elevation: 2840.0 m</div>`)[0];
+                popup_9d64ad3d18e5a3fb01e5e0c585c46799.setContent(html_958ea2653c6f453809adf29dcb7cfcd4);
+            
+        
+
+        circle_marker_f00e2b9c0565e298eb6f3831f7c0c74b.bindPopup(popup_9d64ad3d18e5a3fb01e5e0c585c46799)
+        ;
+
+        
+    
+    
+            circle_marker_f00e2b9c0565e298eb6f3831f7c0c74b.bindTooltip(
+                `<div>
+                     Markagunt Plateau - 2840.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_d417a112abbe2945b6247061c0048668 = L.circleMarker(
+                [37.257, -113.6210022],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_0d7dc47b823700d17e9309c755d91f7f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0c972b5fab7632f5144c79101ffc4e0a = $(`<div id="html_0c972b5fab7632f5144c79101ffc4e0a" style="width: 100.0%; height: 100.0%;"><b>Santa Clara</b><br>Location: US-Utah<br>Elevation: 1465.0 m</div>`)[0];
+                popup_0d7dc47b823700d17e9309c755d91f7f.setContent(html_0c972b5fab7632f5144c79101ffc4e0a);
+            
+        
+
+        circle_marker_d417a112abbe2945b6247061c0048668.bindPopup(popup_0d7dc47b823700d17e9309c755d91f7f)
+        ;
+
+        
+    
+    
+            circle_marker_d417a112abbe2945b6247061c0048668.bindTooltip(
+                `<div>
+                     Santa Clara - 1465.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_c136ab6b7cc2b7dab67e7778defcd108 = L.circleMarker(
+                [37.3279991, -112.401001],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_7e6238d14903c0ed920584c317877d7a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_13cf6b17612263fbe9bc5dc41d1b3be1 = $(`<div id="html_13cf6b17612263fbe9bc5dc41d1b3be1" style="width: 100.0%; height: 100.0%;"><b>Bald Knoll</b><br>Location: US-Utah<br>Elevation: 2135.0 m</div>`)[0];
+                popup_7e6238d14903c0ed920584c317877d7a.setContent(html_13cf6b17612263fbe9bc5dc41d1b3be1);
+            
+        
+
+        circle_marker_c136ab6b7cc2b7dab67e7778defcd108.bindPopup(popup_7e6238d14903c0ed920584c317877d7a)
+        ;
+
+        
+    
+    
+            circle_marker_c136ab6b7cc2b7dab67e7778defcd108.bindTooltip(
+                `<div>
+                     Bald Knoll - 2135.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_60c4e0cf3c382e854ce2c8311a5e6394 = L.circleMarker(
+                [36.3578987, -118.3209991],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_4a170c7923b5704136d528825b228063 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7e5da008564eb1f8b409972f6860d882 = $(`<div id="html_7e5da008564eb1f8b409972f6860d882" style="width: 100.0%; height: 100.0%;"><b>Golden Trout Creek</b><br>Location: US-California<br>Elevation: 2886.0 m</div>`)[0];
+                popup_4a170c7923b5704136d528825b228063.setContent(html_7e5da008564eb1f8b409972f6860d882);
+            
+        
+
+        circle_marker_60c4e0cf3c382e854ce2c8311a5e6394.bindPopup(popup_4a170c7923b5704136d528825b228063)
+        ;
+
+        
+    
+    
+            circle_marker_60c4e0cf3c382e854ce2c8311a5e6394.bindTooltip(
+                `<div>
+                     Golden Trout Creek - 2886.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_95a810f2d45ecb02520a1a86ad820aee = L.circleMarker(
+                [36.0298996, -117.8209991],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_2a1d1d065a4b7c6306940c9626d9ae9b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_98616361ab2864e6e76702967f417d1a = $(`<div id="html_98616361ab2864e6e76702967f417d1a" style="width: 100.0%; height: 100.0%;"><b>Coso Volc Field</b><br>Location: US-California<br>Elevation: 2400.0 m</div>`)[0];
+                popup_2a1d1d065a4b7c6306940c9626d9ae9b.setContent(html_98616361ab2864e6e76702967f417d1a);
+            
+        
+
+        circle_marker_95a810f2d45ecb02520a1a86ad820aee.bindPopup(popup_2a1d1d065a4b7c6306940c9626d9ae9b)
+        ;
+
+        
+    
+    
+            circle_marker_95a810f2d45ecb02520a1a86ad820aee.bindTooltip(
+                `<div>
+                     Coso Volc Field - 2400.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_01356af2378b770db321c40efbddc36e = L.circleMarker(
+                [36.3800011, -113.1309967],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_6d8a35a5cdc62f4744a41d70d485db53 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a1f4982a3749167cea79adfa36ed44cd = $(`<div id="html_a1f4982a3749167cea79adfa36ed44cd" style="width: 100.0%; height: 100.0%;"><b>Uinkaret Field</b><br>Location: US-Arizona<br>Elevation: 1555.0 m</div>`)[0];
+                popup_6d8a35a5cdc62f4744a41d70d485db53.setContent(html_a1f4982a3749167cea79adfa36ed44cd);
+            
+        
+
+        circle_marker_01356af2378b770db321c40efbddc36e.bindPopup(popup_6d8a35a5cdc62f4744a41d70d485db53)
+        ;
+
+        
+    
+    
+            circle_marker_01356af2378b770db321c40efbddc36e.bindTooltip(
+                `<div>
+                     Uinkaret Field - 1555.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_40f28f81ba132adc5e39ddcfb73041d9 = L.circleMarker(
+                [34.75, -116.6210022],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_31e529e1cc4a08c62a4a808f273cc202 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_cc41431e29c30dcb3c4e601948c3e331 = $(`<div id="html_cc41431e29c30dcb3c4e601948c3e331" style="width: 100.0%; height: 100.0%;"><b>Lavic Lake</b><br>Location: US-California<br>Elevation: 1495.0 m</div>`)[0];
+                popup_31e529e1cc4a08c62a4a808f273cc202.setContent(html_cc41431e29c30dcb3c4e601948c3e331);
+            
+        
+
+        circle_marker_40f28f81ba132adc5e39ddcfb73041d9.bindPopup(popup_31e529e1cc4a08c62a4a808f273cc202)
+        ;
+
+        
+    
+    
+            circle_marker_40f28f81ba132adc5e39ddcfb73041d9.bindTooltip(
+                `<div>
+                     Lavic Lake - 1495.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_3e5e5acb42e2282015821efe0c7459e6 = L.circleMarker(
+                [35.8699989, -106.5709991],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkred", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_70754b6dc3b168ca63e5c735aeddf3f6 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d7716684b01adafaad2718c463027f7f = $(`<div id="html_d7716684b01adafaad2718c463027f7f" style="width: 100.0%; height: 100.0%;"><b>Valles Caldera</b><br>Location: US-New Mexico<br>Elevation: 3430.0 m</div>`)[0];
+                popup_70754b6dc3b168ca63e5c735aeddf3f6.setContent(html_d7716684b01adafaad2718c463027f7f);
+            
+        
+
+        circle_marker_3e5e5acb42e2282015821efe0c7459e6.bindPopup(popup_70754b6dc3b168ca63e5c735aeddf3f6)
+        ;
+
+        
+    
+    
+            circle_marker_3e5e5acb42e2282015821efe0c7459e6.bindTooltip(
+                `<div>
+                     Valles Caldera - 3430.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_e2699d3de5fbf009f2cf94c3af3df7f8 = L.circleMarker(
+                [35.3699989, -111.5009995],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_4ec89c3b24e971611a83bfe9f62a312e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8b39d3ea8a680ff48d9a83c1714d8cd9 = $(`<div id="html_8b39d3ea8a680ff48d9a83c1714d8cd9" style="width: 100.0%; height: 100.0%;"><b>Sunset Crater</b><br>Location: US-Arizona<br>Elevation: 2447.0 m</div>`)[0];
+                popup_4ec89c3b24e971611a83bfe9f62a312e.setContent(html_8b39d3ea8a680ff48d9a83c1714d8cd9);
+            
+        
+
+        circle_marker_e2699d3de5fbf009f2cf94c3af3df7f8.bindPopup(popup_4ec89c3b24e971611a83bfe9f62a312e)
+        ;
+
+        
+    
+    
+            circle_marker_e2699d3de5fbf009f2cf94c3af3df7f8.bindTooltip(
+                `<div>
+                     Sunset Crater - 2447.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_6fb06bda61117bb31f3bda1225b65443 = L.circleMarker(
+                [34.5499992, -115.7809982],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_bd8cb37018ec81ca3c15ef0f34e73cfe = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_481f279b6396f7c0b17d9aa14807dae5 = $(`<div id="html_481f279b6396f7c0b17d9aa14807dae5" style="width: 100.0%; height: 100.0%;"><b>Amboy</b><br>Location: US-California<br>Elevation: 288.0 m</div>`)[0];
+                popup_bd8cb37018ec81ca3c15ef0f34e73cfe.setContent(html_481f279b6396f7c0b17d9aa14807dae5);
+            
+        
+
+        circle_marker_6fb06bda61117bb31f3bda1225b65443.bindPopup(popup_bd8cb37018ec81ca3c15ef0f34e73cfe)
+        ;
+
+        
+    
+    
+            circle_marker_6fb06bda61117bb31f3bda1225b65443.bindTooltip(
+                `<div>
+                     Amboy - 288.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_4df9ae3e23184e57c7d346df1fe3f324 = L.circleMarker(
+                [34.7999992, -108.0009995],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_d77c9bc50bd1e7a9713ee2297797eb82 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_296c4664b85b24f4a4387f447be7e88a = $(`<div id="html_296c4664b85b24f4a4387f447be7e88a" style="width: 100.0%; height: 100.0%;"><b>Zuni-Bandera</b><br>Location: US-New Mexico<br>Elevation: 2550.0 m</div>`)[0];
+                popup_d77c9bc50bd1e7a9713ee2297797eb82.setContent(html_296c4664b85b24f4a4387f447be7e88a);
+            
+        
+
+        circle_marker_4df9ae3e23184e57c7d346df1fe3f324.bindPopup(popup_d77c9bc50bd1e7a9713ee2297797eb82)
+        ;
+
+        
+    
+    
+            circle_marker_4df9ae3e23184e57c7d346df1fe3f324.bindTooltip(
+                `<div>
+                     Zuni-Bandera - 2550.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_a440be68a6d33948e4e5fd6803840433 = L.circleMarker(
+                [33.7801018, -105.9309998],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+        
+    
+        var popup_9960d29898d461d0935c3965fb7d0c94 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_885c9c9bc8f6c8ed7c2c7ac55ddc1ddc = $(`<div id="html_885c9c9bc8f6c8ed7c2c7ac55ddc1ddc" style="width: 100.0%; height: 100.0%;"><b>Carrizozo</b><br>Location: US-New Mexico<br>Elevation: 1731.0 m</div>`)[0];
+                popup_9960d29898d461d0935c3965fb7d0c94.setContent(html_885c9c9bc8f6c8ed7c2c7ac55ddc1ddc);
+            
+        
+
+        circle_marker_a440be68a6d33948e4e5fd6803840433.bindPopup(popup_9960d29898d461d0935c3965fb7d0c94)
+        ;
+
+        
+    
+    
+            circle_marker_a440be68a6d33948e4e5fd6803840433.bindTooltip(
+                `<div>
+                     Carrizozo - 1731.0 m
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var layer_control_07adfa661a8feb6af6afbea6d71c6ac4_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_b3ff71d1b6777b8e7b60fca9eb7982cb,
+                    "cartodbpositron" : tile_layer_8400be9988cc660bc746b4c4ba8e0a22,
+                    "cartodbdarkmatter" : tile_layer_e0f8256f5d45cdb58544aa0aa0df6f76,
+                },
+                overlays :  {
+                },
+            };
+            let layer_control_07adfa661a8feb6af6afbea6d71c6ac4 = L.control.layers(
+                layer_control_07adfa661a8feb6af6afbea6d71c6ac4_layers.base_layers,
+                layer_control_07adfa661a8feb6af6afbea6d71c6ac4_layers.overlays,
+                {"autoZIndex": true, "collapsed": true, "position": "topright"}
+            ).addTo(map_51cb0479f64195ac5872431eb2df1f42);
+
+        
+</script>
+</html>
