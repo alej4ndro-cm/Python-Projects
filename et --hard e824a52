@@ -1,8 +1,0 @@
-[33m3a4dcfe[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{0}: Branch: renamed refs/heads/new-branch to refs/heads/main
-[33m3a4dcfe[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{2}: commit (initial): Initial commit
-[33mcdf3888[m HEAD@{3}: commit: Fixing security issues
-[33me824a52[m HEAD@{4}: commit: Final change
-[33me9e6125[m HEAD@{5}: pull: Fast-forward
-[33m082aa68[m HEAD@{6}: commit: Added README and finalized the interactive volcano map script
-[33m4f35e44[m HEAD@{7}: commit: Making a centralized Python projects Hub
-[33ma95c98e[m HEAD@{8}: clone: from https://github.com/alej4ndro-cm/Python-Projects.git
