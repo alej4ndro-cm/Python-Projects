@@ -1,0 +1,3 @@
+*.html linguist-vendored
+Interactive_Volcano_Web_Map/* linguist-vendored
+*.svg linguist-vendored

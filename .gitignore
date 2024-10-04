@@ -5,7 +5,6 @@
 node_modules/
 
 # Ignore environment files and folders
-.env
 /Interactive_Volcano_Web_Map/.envIVWM
 /Music-Insights/.venv/
 /Reddit-Poster/.env_reddit
